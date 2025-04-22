@@ -1,0 +1,10 @@
+
+{
+  "projectId": "g-invoicing-frontend",
+  "orgId": "org-enterprise",
+  "settings": {
+    "framework": "nextjs",
+    "buildCommand": "npm run build",
+    "outputDirectory": "out"
+  }
+}

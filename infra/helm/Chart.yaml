@@ -1,0 +1,7 @@
+
+apiVersion: v2
+name: g-invoicing
+description: Helm chart for deploying the G-Invoicing enterprise platform
+type: application
+version: 1.0.0
+appVersion: "1.0"

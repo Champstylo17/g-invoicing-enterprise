@@ -1,0 +1,12 @@
+
+services:
+  - type: web
+    name: g-invoicing-backend
+    env: node
+    buildCommand: "npm install"
+    startCommand: "node index.js"
+    plan: free
+    branch: main
+    envVars:
+      - key: NODE_ENV
+        value: production

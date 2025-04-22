@@ -1,0 +1,27 @@
+{
+  "name": "g-invoicing-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "husky": "^8.0.0",
+    "lint-staged": "^13.0.0",
+    "prettier": "^2.8.0",
+    "turbo": "^1.10.12"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  }
+}

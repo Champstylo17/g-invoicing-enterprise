@@ -1,0 +1,27 @@
+{
+  "stages": [
+    "Draft",
+    "Internal Review",
+    "External Review",
+    "Legal Approval",
+    "Final Signature",
+    "Active",
+    "Expired"
+  ],
+  "metadata": {
+    "author": "Agency Contract Officer",
+    "required_fields": [
+      "agency_id",
+      "contractor_id",
+      "total_value",
+      "effective_date",
+      "expiration_date",
+      "compliance_certifications"
+    ],
+    "document_control": {
+      "versioning": true,
+      "last_edited_by": "user_id",
+      "last_updated": "timestamp"
+    }
+  }
+}

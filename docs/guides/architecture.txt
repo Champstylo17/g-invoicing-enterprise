@@ -1,0 +1,4 @@
+G-Invoicing Architecture Overview
+
+Frontend (Next.js) --> API (Node.js/NestJS) --> Supabase (PostgreSQL)
+                      --> OCR, AI, Slack, SMTP

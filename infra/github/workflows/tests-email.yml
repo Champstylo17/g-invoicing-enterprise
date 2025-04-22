@@ -1,0 +1,30 @@
+
+name: CI with Email Report
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test-and-report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: cd apps/backend && npm install
+      - name: Run tests
+        run: |
+          cd apps/backend
+          npm test > test-results.txt
+      - name: Email test report
+        run: |
+          node -e "require('./apps/backend/services/emailService').sendTestReport('G-Invoicing Test Results', require('fs').readFileSync('./apps/backend/test-results.txt', 'utf8'))"
+        env:
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+          ALERT_RECIPIENT: ${{ secrets.ALERT_RECIPIENT }}

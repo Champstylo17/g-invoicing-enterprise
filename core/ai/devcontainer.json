@@ -1,0 +1,16 @@
+{
+  "name": "G-Invoicing Dev",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "frontend",
+  "workspaceFolder": "/workspace",
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+  "extensions": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "graphql.vscode-graphql",
+    "ms-azuretools.vscode-docker"
+  ],
+  "postCreateCommand": "npm install"
+}

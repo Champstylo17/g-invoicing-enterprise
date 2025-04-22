@@ -1,0 +1,6 @@
+[
+  {
+    "path": "apps/web/dist/*.js",
+    "limit": "200 KB"
+  }
+]

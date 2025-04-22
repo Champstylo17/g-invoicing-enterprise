@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: g-invoicing-backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./enterprise.db:/app/enterprise.db
+    restart: unless-stopped

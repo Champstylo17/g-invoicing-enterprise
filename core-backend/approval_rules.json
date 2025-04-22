@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Auto-approve < $5K",
+    "condition": "amount < 5000 && agency_tier == 'Level 1'",
+    "action": "approve"
+  },
+  {
+    "name": "Escalate > $100K",
+    "condition": "amount > 100000",
+    "action": "require_senior_approval"
+  }
+]

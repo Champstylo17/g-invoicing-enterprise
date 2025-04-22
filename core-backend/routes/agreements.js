@@ -1,0 +1,1 @@
+app.get('/agreements', (req, res) => res.json([]));

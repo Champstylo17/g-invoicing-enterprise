@@ -1,0 +1,11 @@
+type Invoice {
+  id: ID!
+  description: String!
+  amount: Float!
+  status: String
+  createdAt: String
+}
+
+type Query {
+  invoices: [Invoice!]!
+}

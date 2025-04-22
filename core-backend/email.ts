@@ -1,0 +1,1 @@
+// nodemailer setup for GTC update notifications

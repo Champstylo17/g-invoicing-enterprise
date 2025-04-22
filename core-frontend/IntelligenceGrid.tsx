@@ -1,0 +1,1 @@
+// IntelligenceGrid component

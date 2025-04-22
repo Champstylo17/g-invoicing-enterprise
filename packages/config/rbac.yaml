@@ -1,0 +1,9 @@
+roles:
+  admin:
+    - invoices:read
+    - invoices:write
+    - users:manage
+    - analytics:view
+  user:
+    - invoices:read
+    - analytics:view

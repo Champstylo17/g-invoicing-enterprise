@@ -1,0 +1,8 @@
+frontend:
+  - apps/web/**
+backend:
+  - apps/api/**
+docs:
+  - docs/**
+ci:
+  - .github/workflows/**

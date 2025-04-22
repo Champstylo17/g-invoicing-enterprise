@@ -1,0 +1,18 @@
+
+name: Run Backend Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Dependencies
+        run: cd apps/backend && npm install
+      - name: Run Tests
+        run: cd apps/backend && npm test

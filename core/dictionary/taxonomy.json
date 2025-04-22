@@ -1,0 +1,9 @@
+{
+  "categories": ["Labor", "Supplies", "Technology", "Facilities", "Training"],
+  "statuses": ["Draft", "Pending Review", "Approved", "Paid", "Rejected"],
+  "tags": {
+    "urgency": ["High", "Medium", "Low"],
+    "compliance": ["FAR-Compliant", "Non-Compliant"],
+    "fiscal_year": ["FY2023", "FY2024", "FY2025"]
+  }
+}

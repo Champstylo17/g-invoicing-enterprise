@@ -1,0 +1,10 @@
+
+{
+  "Agreement": {
+    "amount": {
+      "admin": "write",
+      "analyst": "read",
+      "co": "write"
+    }
+  }
+}

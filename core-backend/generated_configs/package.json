@@ -1,0 +1,9 @@
+{
+  "name": "g-invoicing",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "echo 'Add start script here'",
+    "build": "echo 'Add build script here'"
+  },
+  "dependencies": {}
+}

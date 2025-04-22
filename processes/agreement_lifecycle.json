@@ -1,0 +1,11 @@
+
+{
+  "entity": "Agreement",
+  "states": ["Draft", "Under Review", "Approved", "Obligated", "Completed"],
+  "transitions": {
+    "Draft": ["Under Review"],
+    "Under Review": ["Approved"],
+    "Approved": ["Obligated"],
+    "Obligated": ["Completed"]
+  }
+}

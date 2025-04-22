@@ -1,0 +1,8 @@
+{
+  "roles": ["admin", "agency_user", "auditor"],
+  "permissions": {
+    "admin": ["create_invoice", "delete_invoice", "view_reports", "manage_users"],
+    "agency_user": ["create_invoice", "view_own_invoices"],
+    "auditor": ["view_all_invoices", "view_reports"]
+  }
+}

@@ -1,0 +1,11 @@
+
+{
+  "entity": "Contractor",
+  "fields": {
+    "id": "integer",
+    "name": "string",
+    "sam_id": "string",
+    "duns": "string",
+    "type": "enum"
+  }
+}

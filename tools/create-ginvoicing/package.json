@@ -1,0 +1,15 @@
+{
+  "name": "create-ginvoicing",
+  "version": "1.0.0",
+  "bin": {
+    "create-ginvoicing": "index.js"
+  },
+  "description": "Bootstrap G-Invoicing monorepo",
+  "main": "index.js",
+  "author": "G-Invoicing Team",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.0.0",
+    "inquirer": "^9.0.0"
+  }
+}

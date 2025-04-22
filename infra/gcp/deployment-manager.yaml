@@ -1,0 +1,3 @@
+resources:
+- name: g-invoicing-vm
+  type: compute.v1.instance

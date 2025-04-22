@@ -1,0 +1,6 @@
+{
+  "daily_invoice_volume": "count of invoices per 24h",
+  "avg_processing_time": "average duration from draft to paid",
+  "error_rate": "number of failed invoices / total invoices",
+  "monthly_revenue": "sum of approved & paid invoice amounts per month"
+}

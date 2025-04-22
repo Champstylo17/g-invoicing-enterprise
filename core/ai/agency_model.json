@@ -1,0 +1,19 @@
+{
+  "agencies": [
+    {
+      "agency_id": "a001",
+      "name": "Department of Energy",
+      "contact": "doe-contact@example.gov",
+      "tier": "Level 1",
+      "active_agreements": 5
+    }
+  ],
+  "contractors": [
+    {
+      "contractor_id": "c123",
+      "name": "Alpha Builders LLC",
+      "email": "alpha@example.com",
+      "total_due": 42000
+    }
+  ]
+}

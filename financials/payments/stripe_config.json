@@ -1,0 +1,12 @@
+{
+  "currency": "USD",
+  "default_terms": "Net 30",
+  "stripe_keys": {
+    "public_key": "pk_test_XXXX",
+    "secret_key": "sk_test_XXXX"
+  },
+  "webhooks": {
+    "invoice.paid": "/api/webhooks/invoicePaid",
+    "invoice.payment_failed": "/api/webhooks/paymentFailed"
+  }
+}

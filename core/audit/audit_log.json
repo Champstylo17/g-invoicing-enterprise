@@ -1,0 +1,14 @@
+[
+  {
+    "action": "create_invoice",
+    "user_id": "admin123",
+    "timestamp": "2024-04-01T12:00:00Z",
+    "status": "success"
+  },
+  {
+    "action": "sync_payment",
+    "user_id": "system",
+    "timestamp": "2024-04-01T12:10:00Z",
+    "status": "success"
+  }
+]

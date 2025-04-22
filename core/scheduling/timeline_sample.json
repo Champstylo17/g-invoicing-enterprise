@@ -1,0 +1,20 @@
+{
+  "invoice_timeline": [
+    {
+      "invoice_id": "INV001",
+      "milestones": [
+        {"label": "Draft Submitted", "date": "2024-04-01"},
+        {"label": "Reviewed", "date": "2024-04-03"},
+        {"label": "Approved", "date": "2024-04-04"},
+        {"label": "Paid", "date": "2024-04-10"}
+      ]
+    },
+    {
+      "invoice_id": "INV002",
+      "milestones": [
+        {"label": "Draft Submitted", "date": "2024-04-02"},
+        {"label": "Reviewed", "date": "2024-04-04"}
+      ]
+    }
+  ]
+}

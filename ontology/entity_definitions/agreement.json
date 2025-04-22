@@ -1,0 +1,11 @@
+
+{
+  "entity": "Agreement",
+  "fields": {
+    "id": "integer",
+    "title": "string",
+    "amount": "float",
+    "status": "enum",
+    "agency_id": "foreign key"
+  }
+}

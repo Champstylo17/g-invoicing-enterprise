@@ -1,0 +1,9 @@
+{
+  "statuses": [
+    {"label": "New", "order": 1},
+    {"label": "Awaiting Approval", "order": 2},
+    {"label": "Approved", "order": 3},
+    {"label": "Invoiced", "order": 4},
+    {"label": "Paid", "order": 5}
+  ]
+}

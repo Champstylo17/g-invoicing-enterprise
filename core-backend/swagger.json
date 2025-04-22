@@ -1,0 +1,19 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "G-Invoicing Enterprise API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/assistant": {
+      "post": {
+        "summary": "Query the LangChain AI Assistant",
+        "responses": {
+          "200": {
+            "description": "Assistant response"
+          }
+        }
+      }
+    }
+  }
+}

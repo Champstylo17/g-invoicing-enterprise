@@ -1,0 +1,19 @@
+{
+  "invoices": [
+    {
+      "InvoiceNumber": "INV001",
+      "Contact": "Agency XYZ",
+      "Date": "2024-04-01",
+      "DueDate": "2024-04-30",
+      "LineAmountTypes": "Exclusive",
+      "LineItems": [
+        {
+          "Description": "IT Infrastructure Build",
+          "Quantity": 1,
+          "UnitAmount": 18000,
+          "AccountCode": "400"
+        }
+      ]
+    }
+  ]
+}

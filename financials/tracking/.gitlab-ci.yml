@@ -1,0 +1,22 @@
+stages:
+  - test
+  - build
+  - deploy
+
+test:
+  stage: test
+  image: node:18
+  script:
+    - npm install
+    - npm run lint
+    - npm test
+
+build:
+  stage: build
+  script:
+    - npm run build
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying to production..."

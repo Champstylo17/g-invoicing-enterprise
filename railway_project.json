@@ -1,0 +1,8 @@
+{
+  "name": "enterprise-saas",
+  "plugins": ["node"],
+  "deploy": {
+    "installCommand": "npm install",
+    "startCommand": "node app_universal_backend.js"
+  }
+}

@@ -1,0 +1,9 @@
+
+{
+  "Agreement": {
+    "create": ["admin", "co"],
+    "view": ["admin", "co", "analyst"],
+    "edit": ["admin", "co"],
+    "delete": ["admin"]
+  }
+}

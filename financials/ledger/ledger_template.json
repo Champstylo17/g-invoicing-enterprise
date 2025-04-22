@@ -1,0 +1,22 @@
+{
+  "ledger": [
+    {
+      "transaction_id": "txn_001",
+      "type": "invoice",
+      "source": "agency_user",
+      "amount": 25000,
+      "status": "unpaid",
+      "contractor_id": "c123",
+      "date": "2024-04-01"
+    },
+    {
+      "transaction_id": "txn_002",
+      "type": "payment",
+      "source": "stripe",
+      "amount": 25000,
+      "status": "cleared",
+      "contractor_id": "c123",
+      "date": "2024-04-07"
+    }
+  ]
+}

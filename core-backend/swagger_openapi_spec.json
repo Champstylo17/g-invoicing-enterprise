@@ -1,0 +1,19 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "G-Invoicing API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/documents": {
+      "get": {
+        "summary": "List all documents",
+        "responses": {
+          "200": {
+            "description": "A list of documents"
+          }
+        }
+      }
+    }
+  }
+}

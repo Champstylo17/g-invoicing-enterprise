@@ -1,0 +1,29 @@
+
+name: CI - Security & Swagger Validation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install Trivy
+      uses: aquasecurity/trivy-action@v0.8.0
+      with:
+        scan-type: fs
+        scan-ref: .
+        format: table
+
+  swagger:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Swagger Validator
+      uses: char0n/swagger-editor-validate@v1.0.0
+      with:
+        swagger-file: "docs/openapi.yaml"

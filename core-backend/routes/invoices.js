@@ -1,0 +1,1 @@
+app.get('/invoices', (req, res) => res.json([]));

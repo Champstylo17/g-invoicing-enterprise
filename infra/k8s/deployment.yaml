@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: g-invoicing
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: g-invoicing
+  template:
+    metadata:
+      labels:
+        app: g-invoicing
+    spec:
+      containers:
+      - name: g-invoicing
+        image: your-docker-repo/g-invoicing:latest
+        ports:
+        - containerPort: 3000
