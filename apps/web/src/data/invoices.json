@@ -1,0 +1,4 @@
+[
+  { "id": "INV1001", "agency": "VA", "amount": 25000 },
+  { "id": "INV1002", "agency": "HHS", "amount": 67000 }
+]

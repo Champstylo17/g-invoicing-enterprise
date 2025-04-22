@@ -1,0 +1,20 @@
+name: Node API Test & Build
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: |
+          cd apps/api
+          npm install
+      - name: Run tests
+        run: |
+          cd apps/api
+          npm run test
