@@ -75,3 +75,66 @@ npx turbo run graph
 ### 🚂 Railway
 - Import GitHub repo at https://railway.app
 - Uses `railway.json` for config# G_Invoice_Enterprise
+
+
+## 🚀 Deployment Setup
+
+# 🚀 Deployment Guide for G-Invoicing Enterprise
+
+This directory contains all deployment-related scripts, configs, and CI/CD automation for launching the G-Invoicing Enterprise platform.
+
+---
+
+## 📁 Contents
+
+### 🐳 Docker
+
+- `docker-compose.yml`  
+  Orchestrates NGINX reverse proxy, Node.js backend, and static frontend. Ideal for local dev, staging, or simple production setups.
+
+- `nginx.conf` (mounted from `infra/docker/`)  
+  Routes `/api/` to backend and serves SPA from `/`.
+
+---
+
+### ☁️ GitHub Actions (CI/CD)
+
+- `deploy.yml`  
+  Generic production deploy pipeline. Extendable.
+
+- `fly_deploy.yml`  
+  Deploys to [Fly.io](https://fly.io) — great for global scaling.
+
+- `vercel_deploy.yml`  
+  Pushes your frontend to Vercel — ideal for React/Vite static sites.
+
+- `deploy_docs_and_storybook.yml`  
+  Publishes documentation (Docusaurus/Markdown) and component previews (Storybook).
+
+---
+
+### 🚂 Platform Scripts
+
+- `deploy_heroku.sh`  
+  One-click Heroku deployment via CLI/Git.
+
+---
+
+### 🗺 Architecture Diagram
+
+- `Mermaid_Architecture.md`  
+  Visual map of system: User → NGINX → Backend/API + Frontend SPA.
+
+---
+
+## 📦 Usage
+
+```bash
+# To bring up the stack locally
+docker-compose -f deploy/docker-compose.yml up --build
+```
+
+Customize for dev/staging/prod using multiple compose files or env vars.
+
+---
+
