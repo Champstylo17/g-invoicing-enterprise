@@ -138,3 +138,16 @@ Customize for dev/staging/prod using multiple compose files or env vars.
 
 ---
 
+## 🚀 One-Click Deployment
+
+Deploy your full-stack G-Invoicing Enterprise platform with a single click.
+
+[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/import?s=https://github.com/Champstylo17/g-invoicing-enterprise)
+
+[![Deploy to Fly.io](https://img.shields.io/badge/Deploy-Fly.io-blue?logo=fly.io)](https://fly.io/dashboard)
+
+[![Deploy to Render](https://img.shields.io/badge/Deploy%20to-Render-brightgreen?logo=render)](https://render.com/deploy)
+
+[![Open in Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?repo=Champstylo17/g-invoicing-enterprise)
+
+---
