@@ -1,0 +1,17 @@
+[
+  {
+    "agency": "DoD",
+    "score": 92,
+    "level": "High"
+  },
+  {
+    "agency": "EPA",
+    "score": 67,
+    "level": "Moderate"
+  },
+  {
+    "agency": "VA",
+    "score": 45,
+    "level": "Low"
+  }
+]

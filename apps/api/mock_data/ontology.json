@@ -1,0 +1,17 @@
+[
+  {
+    "term": "Agency",
+    "definition": "Gov org",
+    "lineage": "GSA > Treasury > Agency"
+  },
+  {
+    "term": "Funding Source",
+    "definition": "Appropriation",
+    "lineage": "OMB > Budget Line"
+  },
+  {
+    "term": "Performance Status",
+    "definition": "Open/Closed/Delayed",
+    "lineage": "Agreement > Order > Report"
+  }
+]

@@ -1,24 +1,17 @@
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
-function authenticateToken(req, res, next) {
-  const token = req.headers['authorization'];
-  if (!token) return res.status(401).send('Access Denied');
+function authMiddleware(req, res, next) {
+  const authHeader = req.headers.authorization;
+  if (!authHeader) return res.status(401).json({ error: "Unauthorized" });
+
+  const token = authHeader.split(" ")[1];
   try {
-    const verified = jwt.verify(token.replace('Bearer ', ''), process.env.JWT_SECRET);
-    req.user = verified;
+    const payload = jwt.verify(token, process.env.JWT_SECRET || "secretkey");
+    req.user = payload;
     next();
   } catch (err) {
-    res.status(403).send('Invalid Token');
+    res.status(403).json({ error: "Forbidden" });
   }
 }
 
-function authorizeRoles(...roles) {
-  return (req, res, next) => {
-    if (!roles.includes(req.user?.role)) {
-      return res.status(403).send('Forbidden: Insufficient Role');
-    }
-    next();
-  };
-}
-
-module.exports = { authenticateToken, authorizeRoles };
+module.exports = authMiddleware;

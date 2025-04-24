@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Q1",
+    "Budget": 400000,
+    "Actual": 385000
+  },
+  {
+    "name": "Q2",
+    "Budget": 420000,
+    "Actual": 410000
+  },
+  {
+    "name": "Q3",
+    "Budget": 430000,
+    "Actual": 440000
+  },
+  {
+    "name": "Q4",
+    "Budget": 450000,
+    "Actual": 455000
+  }
+]

@@ -1,0 +1,14 @@
+[
+  {
+    "tool": "Data Seeder",
+    "status": "Ready"
+  },
+  {
+    "tool": "Test Suite",
+    "status": "Failing"
+  },
+  {
+    "tool": "Log Viewer",
+    "status": "Operational"
+  }
+]

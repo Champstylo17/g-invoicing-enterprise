@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
+const auth = require("./middleware/auth");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -22,6 +23,17 @@ app.use('/api/contractors', require('./routes/contractors'));
 app.use('/api/permissions', require('./routes/permissions'));
 app.use('/api/dictionary', require('./routes/dictionary'));
 app.use('/api/timelines', require('./routes/timelines'));
+app.use("/api/ai-insights", require("./routes/ai_insights"));
+app.use("/api/financials", require("./routes/financials"));
+app.use("/api/ontology", require("./routes/ontology"));
+app.use("/api/integration", require("./routes/integration"));
+app.use("/api/tools", require("./routes/tools"));
+app.use("/api/config", auth, require("./routes/config"));
+app.use("/api/tools", auth, require("./routes/tools"));
+app.use("/api/config", require("./routes/config"));
+app.use("/api/devops", require("./routes/devops"));
+app.use("/api/workflows", require("./routes/workflows"));
+app.use("/api/devops", auth, require("./routes/devops"));
 
 // Start server
 app.listen(PORT, () => {
