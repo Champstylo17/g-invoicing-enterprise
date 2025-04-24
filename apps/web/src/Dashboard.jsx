@@ -42,6 +42,9 @@ export default function GInvoicingDashboard() {
     if (token) {
       const payload = JSON.parse(atob(token.split(".")[1]));
       setRole(payload.role);
+    }
+  }, []);
+  
   useEffect(() => {
     fetch("/api/agreements").then(res => res.json()).then(setAgreements);
     fetch("/api/audit").then(res => res.json()).then(setAuditLogs);
@@ -50,9 +53,7 @@ export default function GInvoicingDashboard() {
     fetch("/api/dictionary").then(res => res.json()).then(setDictionary);
     fetch("/api/timelines").then(res => res.json()).then(setTimelines);
   }, []);
-
-    }
-  }, []);
+  
 
   return (
     <div className="p-6 space-y-6 text-gray-900 bg-gradient-to-b from-blue-50 to-gray-100 min-h-screen">
