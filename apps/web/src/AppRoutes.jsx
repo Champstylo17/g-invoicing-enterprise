@@ -12,6 +12,7 @@ import Invoices from "@/dashboard/pages/invoices";
 import ComplianceByAgency from "@/pages/ComplianceByAgency";
 import InteragencyAgreementExplorer from "@/pages/InteragencyAgreementExplorer";
 import ContractSummaryTimeline from "@/pages/ContractSummaryTimeline";
+import UiTest from "@/dashboard/pages/UiTest";
 
 export default function AppRoutes() {
   return (
@@ -34,6 +35,7 @@ export default function AppRoutes() {
                   <Route path="/compliance-agency" element={<ComplianceByAgency />} />
                   <Route path="/agreement-explorer" element={<InteragencyAgreementExplorer />} />
                   <Route path="/contract-timeline" element={<ContractSummaryTimeline />} />
+                  <Route path="/ui-test" element={<UiTest />} />
                 </Routes>
               </AppLayout>
             </ProtectedRoute>
