@@ -19,28 +19,20 @@ export default function AppRoutes() {
     <Router>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route
-          path="/*"
-          element={
-            <ProtectedRoute>
-              <AppLayout>
-                <Routes>
-                  <Route path="/" element={<Navigate to="/dashboard" />} />
-                  <Route path="/dashboard" element={<Dashboard />} />
-                  <Route path="/audit" element={<Audit />} />
-                  <Route path="/permissions" element={<Permissions />} />
-                  <Route path="/dictionary" element={<Dictionary />} />
-                  <Route path="/agreements" element={<Agencies />} />
-                  <Route path="/invoices" element={<Invoices />} />
-                  <Route path="/compliance-agency" element={<ComplianceByAgency />} />
-                  <Route path="/agreement-explorer" element={<InteragencyAgreementExplorer />} />
-                  <Route path="/contract-timeline" element={<ContractSummaryTimeline />} />
-                  <Route path="/ui-test" element={<UiTest />} />
-                </Routes>
-              </AppLayout>
-            </ProtectedRoute>
-          }
-        />
+
+        <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
+          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/audit" element={<Audit />} />
+          <Route path="/permissions" element={<Permissions />} />
+          <Route path="/dictionary" element={<Dictionary />} />
+          <Route path="/agreements" element={<Agencies />} />
+          <Route path="/invoices" element={<Invoices />} />
+          <Route path="/compliance-agency" element={<ComplianceByAgency />} />
+          <Route path="/agreement-explorer" element={<InteragencyAgreementExplorer />} />
+          <Route path="/contract-timeline" element={<ContractSummaryTimeline />} />
+          <Route path="/ui-test" element={<UiTest />} />
+        </Route>
       </Routes>
     </Router>
   );
