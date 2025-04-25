@@ -1,0 +1,27 @@
+import SystemConfigCenter from "@/features/core/SystemConfigCenter";
+import DevOpsPanel from "@/features/infra/DevOpsPanel";
+import WorkflowStudio from "@/features/processes/WorkflowStudio";
+
+
+JSX additions to TabNav:
+
+      {activeTab === "system" && (
+        <>
+          <SectionHeading title="System Configuration Center" />
+          <SystemConfigCenter />
+        </>
+      )}
+
+      {activeTab === "devops" && (
+        <>
+          <SectionHeading title="DevOps Insights" />
+          <DevOpsPanel />
+        </>
+      )}
+
+      {activeTab === "workflow" && (
+        <>
+          <SectionHeading title="Workflow Studio" />
+          <WorkflowStudio />
+        </>
+      )}

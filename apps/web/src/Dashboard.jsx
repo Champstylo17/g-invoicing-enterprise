@@ -35,7 +35,7 @@ import AuditLogTable from "@/tables/AuditLogTable";
 // Feature Tabs
 import AIDashboard from "@/features/ai-insights/AIDashboard";
 import FinancialInsights from "@/features/financials/FinancialInsights";
-import OntologyExplorer from "@/features/ontology/OntologyView"; // unified to one name
+import OntologyExplorer from "@/features/ontology/OntologyView";
 import IntegrationStatus from "@/features/integration/IntegrationStatus";
 import ToolsDiagnostics from "@/features/tools/ToolsDiagnostics";
 import SystemConfigCenter from "@/features/tools/SystemConfigCenter";
@@ -53,7 +53,6 @@ export default function GInvoicingDashboard() {
   const [permissions, setPermissions] = useState([]);
   const [dictionary, setDictionary] = useState([]);
   const [timelines, setTimelines] = useState([]);
-
   const [aiData, setAiData] = useState([]);
   const [financeData, setFinanceData] = useState([]);
   const [ontologyData, setOntologyData] = useState([]);
@@ -82,28 +81,19 @@ export default function GInvoicingDashboard() {
     fetch("/api/tools", {
       headers: { Authorization: `Bearer ${localStorage.getItem("jwt_token")}` },
     }).then(res => res.json()).then(setToolsData);
-    fetch("/api/config").then(res => res.json()).then(console.log);
-    fetch("/api/devops").then(res => res.json()).then(console.log);
-    fetch("/api/workflows").then(res => res.json()).then(console.log);
   }, []);
 
   return (
-    <div className="space-y-6 font-sans text-gray-900 bg-gradient-to-b from-blue-50 to-gray-100 min-h-screen">
+    <div className="space-y-10 px-6 py-8 text-gray-900 bg-gradient-to-b from-blue-50 to-gray-100 min-h-screen font-sans">
       <BannerHeader
         title="G-Invoicing Enterprise Dashboard"
         subtitle="Unified interagency platform for financial transparency and federal compliance"
       />
+
       <TabNav
         tabs={[
-          "dashboard",
-          "ai",
-          "financials",
-          "ontology",
-          "integration",
-          "tools",
-          "system-config",
-          "devops",
-          "workflow-studio"
+          "dashboard", "ai", "financials", "ontology", "integration",
+          "tools", "system-config", "devops", "workflow-studio"
         ]}
         active={activeTab}
         onChange={setActiveTab}
@@ -111,83 +101,93 @@ export default function GInvoicingDashboard() {
 
       {activeTab === "dashboard" && (
         <>
-          <SectionHeading title="Overview Summary" />
-          <Overview />
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <section className="bg-white rounded shadow p-6">
+            <SectionHeading title="Overview Summary" />
+            <Overview />
+          </section>
+
+          <section className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <KpiCard />
             <ForecastCard />
             <ValidationCard />
             {role !== "reviewer" && <BottleneckDetectionCard />}
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          </section>
+
+          <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <TransitionFlowChart />
             <TimeInStateBarChart />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          </section>
+
+          <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {role !== "reviewer" && <AuditLogTable data={auditLogs} />}
             <ReadinessHeatmap />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          </section>
+
+          <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {role !== "analyst" && <ChangeJustification />}
             {role !== "analyst" && <Permissions />}
-          </div>
+          </section>
+
           {role !== "analyst" && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Permissions />
+            <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <PermissionsTable data={permissions} />
-            </div>
+              <DataDictionary />
+            </section>
           )}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+          <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <UserStoriesList />
             <TreasuryDonutChart />
-            <DataDictionary />
             <ContractorList data={contractors} />
             <AgreementExplorer data={agreements} />
             <TimelineChart data={timelines} />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          </section>
+
+          <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Agencies />
             <Invoices />
-          </div>
+          </section>
+
           <Compliance />
         </>
       )}
 
       {activeTab === "ai" && (
-        <>
+        <section className="bg-white rounded shadow p-6">
           <SectionHeading title="AI Insights & Predictive Risk" />
           <FilterTabs filters={["All", "Low", "Moderate", "High"]} active={filter} onChange={setFilter} />
           <AIDashboard riskLevel={filter} />
-        </>
+        </section>
       )}
 
       {activeTab === "financials" && (
-        <>
+        <section className="bg-white rounded shadow p-6">
           <SectionHeading title="Financial Analysis & Metrics" />
           <FinancialInsights />
-        </>
+        </section>
       )}
 
       {activeTab === "ontology" && (
-        <>
+        <section className="bg-white rounded shadow p-6">
           <SectionHeading title="Data Dictionary & Metadata Ontology" />
           <OntologyExplorer />
-        </>
+        </section>
       )}
 
       {activeTab === "integration" && (
-        <>
+        <section className="bg-white rounded shadow p-6">
           <SectionHeading title="API Integrations & Treasury Syncs" />
           <IntegrationStatus />
-        </>
+        </section>
       )}
 
       {role === "admin" && activeTab === "tools" && (
-        <>
+        <section className="bg-white rounded shadow p-6">
           <SectionHeading title="Developer Tools & Utilities" />
           <ToolsDiagnostics />
-        </>
+        </section>
       )}
+
       {role === "admin" && activeTab === "system-config" && <SystemConfigCenter />}
       {role === "admin" && activeTab === "devops" && <DevOpsPanel />}
       {role === "admin" && activeTab === "workflow-studio" && <WorkflowStudio />}
