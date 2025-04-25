@@ -5,7 +5,7 @@ import BannerHeader from "@/components/BannerHeader";
 import SectionHeading from "@/components/SectionHeading";
 import FilterTabs from "@/components/FilterTabs";
 
-// Pages
+// Pages and core components
 import Compliance from "@/dashboard/pages/compliance";
 import Permissions from "@/dashboard/pages/permissions";
 import Audit from "@/dashboard/pages/audit";
@@ -15,7 +15,7 @@ import ContractorList from "@/tables/ContractorList";
 import AgreementExplorer from "@/tables/AgreementExplorer";
 import TimelineChart from "@/tables/TimelineChart";
 
-// Data Tables and Visuals
+// Visuals and analytics
 import ChangeJustification from "@/tables/ChangeJustification";
 import DataDictionary from "@/tables/DataDictionary";
 import PermissionsTable from "@/tables/PermissionsTable";
@@ -32,7 +32,7 @@ import Agencies from "@/dashboard/pages/agencies";
 import Invoices from "@/dashboard/pages/invoices";
 import AuditLogTable from "@/tables/AuditLogTable";
 
-// Feature Tabs
+// Features
 import AIDashboard from "@/features/ai-insights/AIDashboard";
 import FinancialInsights from "@/features/financials/FinancialInsights";
 import OntologyExplorer from "@/features/ontology/OntologyView";
@@ -84,10 +84,10 @@ export default function GInvoicingDashboard() {
   }, []);
 
   return (
-    <div className="space-y-10 px-6 py-8 text-gray-900 bg-gradient-to-b from-blue-50 to-gray-100 min-h-screen font-sans">
+    <div className="space-y-10 px-6 py-8 text-gray-900 bg-govgray min-h-screen font-sans">
       <BannerHeader
         title="G-Invoicing Enterprise Dashboard"
-        subtitle="Unified interagency platform for financial transparency and federal compliance"
+        subtitle="Unified platform for financial transparency and compliance"
       />
 
       <TabNav
@@ -102,40 +102,39 @@ export default function GInvoicingDashboard() {
       {activeTab === "dashboard" && (
         <>
           <section className="bg-white rounded shadow p-6">
-            <SectionHeading title="Overview Summary" />
+            <SectionHeading title="Summary & KPIs" />
             <Overview />
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-4">
+              <KpiCard />
+              <ForecastCard />
+              <ValidationCard />
+              {role !== "reviewer" && <BottleneckDetectionCard />}
+            </div>
           </section>
 
-          <section className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <KpiCard />
-            <ForecastCard />
-            <ValidationCard />
-            {role !== "reviewer" && <BottleneckDetectionCard />}
-          </section>
-
-          <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <section className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-6 rounded shadow">
             <TransitionFlowChart />
             <TimeInStateBarChart />
           </section>
 
-          <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <section className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-6 rounded shadow">
             {role !== "reviewer" && <AuditLogTable data={auditLogs} />}
             <ReadinessHeatmap />
           </section>
 
-          <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <section className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-6 rounded shadow">
             {role !== "analyst" && <ChangeJustification />}
             {role !== "analyst" && <Permissions />}
           </section>
 
           {role !== "analyst" && (
-            <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <section className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-6 rounded shadow">
               <PermissionsTable data={permissions} />
               <DataDictionary />
             </section>
           )}
 
-          <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <section className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-6 rounded shadow">
             <UserStoriesList />
             <TreasuryDonutChart />
             <ContractorList data={contractors} />
@@ -143,7 +142,7 @@ export default function GInvoicingDashboard() {
             <TimelineChart data={timelines} />
           </section>
 
-          <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <section className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-6 rounded shadow">
             <Agencies />
             <Invoices />
           </section>
@@ -153,7 +152,7 @@ export default function GInvoicingDashboard() {
       )}
 
       {activeTab === "ai" && (
-        <section className="bg-white rounded shadow p-6">
+        <section className="bg-white p-6 rounded shadow">
           <SectionHeading title="AI Insights & Predictive Risk" />
           <FilterTabs filters={["All", "Low", "Moderate", "High"]} active={filter} onChange={setFilter} />
           <AIDashboard riskLevel={filter} />
@@ -161,28 +160,28 @@ export default function GInvoicingDashboard() {
       )}
 
       {activeTab === "financials" && (
-        <section className="bg-white rounded shadow p-6">
+        <section className="bg-white p-6 rounded shadow">
           <SectionHeading title="Financial Analysis & Metrics" />
           <FinancialInsights />
         </section>
       )}
 
       {activeTab === "ontology" && (
-        <section className="bg-white rounded shadow p-6">
+        <section className="bg-white p-6 rounded shadow">
           <SectionHeading title="Data Dictionary & Metadata Ontology" />
           <OntologyExplorer />
         </section>
       )}
 
       {activeTab === "integration" && (
-        <section className="bg-white rounded shadow p-6">
+        <section className="bg-white p-6 rounded shadow">
           <SectionHeading title="API Integrations & Treasury Syncs" />
           <IntegrationStatus />
         </section>
       )}
 
       {role === "admin" && activeTab === "tools" && (
-        <section className="bg-white rounded shadow p-6">
+        <section className="bg-white p-6 rounded shadow">
           <SectionHeading title="Developer Tools & Utilities" />
           <ToolsDiagnostics />
         </section>

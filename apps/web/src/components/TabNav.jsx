@@ -2,26 +2,16 @@ import React from "react";
 
 export default function TabNav({ tabs = [], active, onChange }) {
   return (
-    <nav className="border-b border-gray-300 bg-slate-100 px-4 py-2 rounded-t-md shadow-md overflow-x-auto">
-      <ul className="flex space-x-3 text-sm font-medium text-gray-800 min-w-max">
-        {[
-          "dashboard",
-          "ai",
-          "financials",
-          "ontology",
-          "integration",
-          "tools",
-          "system-config",
-          "devops",
-          "workflow-studio"
-        ].map((tab) => (
+    <nav className="border-b border-gray-200 bg-white px-4 py-3 shadow-md">
+      <ul className="flex flex-wrap gap-2 md:gap-4 text-sm font-semibold text-gray-800">
+        {tabs.map((tab) => (
           <li key={tab}>
             <button
               onClick={() => onChange(tab)}
-              className={`px-4 py-2 rounded-md transition whitespace-nowrap ${
+              className={`px-4 py-2 rounded-full transition whitespace-nowrap ${
                 active === tab
                   ? "bg-govblue text-white shadow"
-                  : "hover:bg-govblue hover:text-white bg-white border border-gray-300"
+                  : "bg-govgray text-govblue hover:bg-govblue hover:text-white border border-govblue"
               }`}
             >
               {tab.charAt(0).toUpperCase() + tab.slice(1).replace(/-|_/g, " ")}
