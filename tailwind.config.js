@@ -5,6 +5,11 @@ module.exports = {
     "./apps/**/*.{js,jsx,ts,tsx}",
     "./packages/**/*.{js,jsx,ts,tsx}",
     "./components/**/*.{js,jsx,ts,tsx}",
+    "./src/features/**/*.{js,jsx}",
+    "./src/dashboard/pages/**/*.{js,jsx}",
+    "./src/tables/**/*.{js,jsx}",
+    "./src/cards/**/*.{js,jsx}",
+    "./src/charts/**/*.{js,jsx}"
   ],
   theme: {
     extend: {

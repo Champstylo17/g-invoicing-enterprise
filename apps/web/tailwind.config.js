@@ -2,10 +2,17 @@ const path = require("path");
 
 module.exports = {
   content: [
+    "./apps/web/src/**/*.{js,jsx,ts,tsx}",
     "./apps/**/*.{js,jsx,ts,tsx}",
     "./packages/**/*.{js,jsx,ts,tsx}",
     "./components/**/*.{js,jsx,ts,tsx}",
+    "./apps/web/src/features/**/*.{js,jsx}",
+    "./apps/web/src/dashboard/pages/**/*.{js,jsx}",
+    "./apps/web/src/tables/**/*.{js,jsx}",
+    "./apps/web/src/cards/**/*.{js,jsx}",
+    "./apps/web/src/charts/**/*.{js,jsx}"
   ],
+  
   theme: {
     extend: {
       fontFamily: {
