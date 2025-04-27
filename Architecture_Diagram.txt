@@ -1,0 +1,4 @@
+Frontend (React + Vite) -> Backend (Express API) -> Database (PostgreSQL)
+ | WebSocket Real-time Updates |
+ -> Notifications System (Slack, Email)
+ -> AI Insights Future Module.

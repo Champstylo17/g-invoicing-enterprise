@@ -9,30 +9,36 @@ import {
   HiOutlineChartBar,
   HiOutlineAdjustments,
   HiOutlineLightningBolt,
+  HiOutlineViewList,
+  HiOutlineCheckCircle,
+  HiOutlineCurrencyDollar,
 } from "react-icons/hi";
 
 export default function SidebarNav({ role = "analyst" }) {
   const navItems = [
-    { to: "/dashboard", icon: <HiOutlineHome />, label: "Dashboard" },
-    { to: "/agreements", icon: <HiOutlineDocumentText />, label: "Agreements" },
-    { to: "/invoices", icon: <HiOutlineChartBar />, label: "Invoices" },
-    { to: "/permissions", icon: <HiOutlineShieldCheck />, label: "Permissions" },
-    { to: "/dictionary", icon: <HiOutlineDatabase />, label: "Dictionary" },
-    { to: "/audit", icon: <HiOutlineAdjustments />, label: "Audit Logs" },
-    { to: "/compliance-agency", icon: <HiOutlineUserGroup />, label: "Agency Compliance" },
+    { to: "/dashboard",       icon: <HiOutlineHome />,           label: "Dashboard" },
+    { to: "/agreements",      icon: <HiOutlineDocumentText />,   label: "Agreements" },
+    { to: "/orders",          icon: <HiOutlineViewList />,       label: "Orders" },
+    { to: "/performances",    icon: <HiOutlineCheckCircle />,    label: "Performances" },
+    { to: "/invoices",        icon: <HiOutlineChartBar />,       label: "Invoices" },
+    { to: "/payments",        icon: <HiOutlineCurrencyDollar />, label: "Payments" },
+    { to: "/permissions",     icon: <HiOutlineShieldCheck />,    label: "Permissions" },
+    { to: "/dictionary",      icon: <HiOutlineDatabase />,       label: "Dictionary" },
+    { to: "/audit",           icon: <HiOutlineAdjustments />,    label: "Audit Logs" },
+    { to: "/compliance-agency", icon: <HiOutlineUserGroup />,    label: "Agency Compliance" },
   ];
 
   if (role === "admin") {
     navItems.push(
-      { to: "/tools", icon: <HiOutlineCog />, label: "Dev Tools" },
-      { to: "/workflow-studio", icon: <HiOutlineLightningBolt />, label: "Workflow Studio" }
+      { to: "/tools",           icon: <HiOutlineCog />,            label: "Dev Tools" },
+      { to: "/workflow-studio", icon: <HiOutlineLightningBolt />,  label: "Workflow Studio" }
     );
   }
 
   return (
     <aside className="w-60 bg-govblue text-white min-h-screen flex flex-col shadow-lg">
       <div className="px-6 py-4 text-lg font-semibold tracking-wide border-b border-govgray">
-        G-Invoicing Gov
+        G-Invoicing Enterprise
       </div>
       <nav className="flex-1 px-4 py-6 space-y-2">
         {navItems.map((item) => (
@@ -53,7 +59,7 @@ export default function SidebarNav({ role = "analyst" }) {
         ))}
       </nav>
       <footer className="text-xs text-center py-4 border-t border-govgray">
-        © 2025 G-Invoicing Enterprise
+        © {new Date().getFullYear()} G-Invoicing Enterprise
       </footer>
     </aside>
   );

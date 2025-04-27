@@ -1,0 +1,16 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: g_invoicing
+  api:
+    build: ../apps/api
+    ports:
+      - '5000:5000'
+  web:
+    build: ../apps/web
+    ports:
+      - '3000:3000'

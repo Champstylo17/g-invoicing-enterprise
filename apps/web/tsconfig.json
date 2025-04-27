@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "jsx": "react-jsx",
+    "baseUrl": ".",                // ← enable path mapping
+    "paths": {
+      "@/*": ["src/*"]             // ← map `@/` to your `src/` folder
+    },
+    // …the rest of your existing compilerOptions…
+  },
+  "include": ["src", "vite.config.ts"]
+}
