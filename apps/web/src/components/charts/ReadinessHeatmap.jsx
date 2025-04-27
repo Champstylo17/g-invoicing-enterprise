@@ -1,4 +1,4 @@
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/cards";
 
 export default function ReadinessHeatmap() {
   const zones = [

@@ -1,6 +1,7 @@
+// apps/web/src/Dashboard.jsx
 import { useEffect, useState } from "react";
 
-import TabNav from "@/components/TabNav";
+import NavTabs from "@/components/NavTabs";
 import BannerHeader from "@/components/BannerHeader";
 import SectionHeading from "@/components/SectionHeading";
 import FilterTabs from "@/components/FilterTabs";
@@ -59,41 +60,73 @@ export default function GInvoicingDashboard() {
   const [integrationData, setIntegrationData] = useState([]);
   const [toolsData, setToolsData] = useState([]);
 
+  // Guarded JWT decode
   useEffect(() => {
     const token = localStorage.getItem("jwt_token");
-    if (token) {
-      const payload = JSON.parse(atob(token.split(".")[1]));
-      setRole(payload.role);
+    if (!token) return;
+
+    const parts = token.split(".");
+    if (parts.length === 3) {
+      try {
+        const payload = JSON.parse(atob(parts[1]));
+        setRole(payload.role || "admin");
+      } catch (e) {
+        console.warn("Invalid JWT token, cannot decode payload", e);
+      }
+    } else {
+      console.warn("Token is not in JWT format, skipping decode");
     }
   }, []);
 
+  // Data fetches with safeFetch
   useEffect(() => {
-    fetch("/api/agreements").then(res => res.json()).then(setAgreements);
-    fetch("/api/audit").then(res => res.json()).then(setAuditLogs);
-    fetch("/api/contractors").then(res => res.json()).then(setContractors);
-    fetch("/api/permissions").then(res => res.json()).then(setPermissions);
-    fetch("/api/dictionary").then(res => res.json()).then(setDictionary);
-    fetch("/api/timelines").then(res => res.json()).then(setTimelines);
-    fetch("/api/ai-insights").then(res => res.json()).then(setAiData);
-    fetch("/api/financials").then(res => res.json()).then(setFinanceData);
-    fetch("/api/ontology").then(res => res.json()).then(setOntologyData);
-    fetch("/api/integration").then(res => res.json()).then(setIntegrationData);
-    fetch("/api/tools", {
+    const safeFetch = (url, options) =>
+      fetch(url, options)
+        .then(res => {
+          if (!res.ok) {
+            console.warn(`Fetch to ${url} failed with ${res.status}`);
+            return [];
+          }
+          return res.json();
+        })
+        .catch(err => {
+          console.error(`Network error fetching ${url}`, err);
+          return [];
+        });
+
+    safeFetch("/api/agreements").then(setAgreements);
+    safeFetch("/api/audit").then(setAuditLogs);
+    safeFetch("/api/contractors").then(setContractors);
+    safeFetch("/api/permissions").then(setPermissions);
+    safeFetch("/api/dictionary").then(setDictionary);
+    safeFetch("/api/timelines").then(setTimelines);
+    safeFetch("/api/ai-insights").then(setAiData);
+    safeFetch("/api/financials").then(setFinanceData);
+    safeFetch("/api/ontology").then(setOntologyData);
+    safeFetch("/api/integration").then(setIntegrationData);
+    safeFetch("/api/tools", {
       headers: { Authorization: `Bearer ${localStorage.getItem("jwt_token")}` },
-    }).then(res => res.json()).then(setToolsData);
+    }).then(setToolsData);
   }, []);
 
   return (
-    <div className="space-y-10 px-6 py-8 text-gray-900 bg-govgray min-h-screen font-sans">
+    <div className="space-y-10 px-8 py-8 text-gray-900 bg-govgray min-h-screen font-sans">
       <BannerHeader
         title="G-Invoicing Enterprise Dashboard"
         subtitle="Unified platform for financial transparency and compliance"
       />
 
-      <TabNav
+      <NavTabs
         tabs={[
-          "dashboard", "ai", "financials", "ontology", "integration",
-          "tools", "system-config", "devops", "workflow-studio"
+          "dashboard",
+          "ai",
+          "financials",
+          "ontology",
+          "integration",
+          "tools",
+          "system-config",
+          "devops",
+          "workflow-studio",
         ]}
         active={activeTab}
         onChange={setActiveTab}
@@ -101,95 +134,119 @@ export default function GInvoicingDashboard() {
 
       {activeTab === "dashboard" && (
         <>
-          <section className="bg-white rounded shadow p-6">
+          <section className="bg-white rounded-lg shadow p-6">
             <SectionHeading title="Summary & KPIs" />
             <Overview />
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-4">
-              <KpiCard />
-              <ForecastCard />
-              <ValidationCard />
-              {role !== "reviewer" && <BottleneckDetectionCard />}
+              <div className="bg-white rounded-lg shadow p-4"><KpiCard /></div>
+              <div className="bg-white rounded-lg shadow p-4"><ForecastCard /></div>
+              <div className="bg-white rounded-lg shadow p-4"><ValidationCard /></div>
+              {role !== "reviewer" && (
+                <div className="bg-white rounded-lg shadow p-4">
+                  <BottleneckDetectionCard />
+                </div>
+              )}
             </div>
           </section>
 
-          <section className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-6 rounded shadow">
-            <TransitionFlowChart />
-            <TimeInStateBarChart />
+          <section className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-6 rounded-lg shadow">
+            <div className="bg-white rounded-lg shadow p-4"><TransitionFlowChart /></div>
+            <div className="bg-white rounded-lg shadow p-4"><TimeInStateBarChart /></div>
           </section>
 
-          <section className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-6 rounded shadow">
-            {role !== "reviewer" && <AuditLogTable data={auditLogs} />}
-            <ReadinessHeatmap />
+          <section className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-6 rounded-lg shadow">
+            {role !== "reviewer" && (
+              <div className="bg-white rounded-lg shadow p-4">
+                <AuditLogTable data={auditLogs} />
+              </div>
+            )}
+            <div className="bg-white rounded-lg shadow p-4"><ReadinessHeatmap /></div>
           </section>
 
-          <section className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-6 rounded shadow">
-            {role !== "analyst" && <ChangeJustification />}
-            {role !== "analyst" && <Permissions />}
+          <section className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-6 rounded-lg shadow">
+            {role !== "analyst" && (
+              <div className="bg-white rounded-lg shadow p-4"><ChangeJustification /></div>
+            )}
+            {role !== "analyst" && (
+              <div className="bg-white rounded-lg shadow p-4"><Permissions /></div>
+            )}
           </section>
 
           {role !== "analyst" && (
-            <section className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-6 rounded shadow">
-              <PermissionsTable data={permissions} />
-              <DataDictionary />
+            <section className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-6 rounded-lg shadow">
+              <div className="bg-white rounded-lg shadow p-4">
+                <PermissionsTable data={permissions} />
+              </div>
+              <div className="bg-white rounded-lg shadow p-4"><DataDictionary /></div>
             </section>
           )}
 
-          <section className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-6 rounded shadow">
-            <UserStoriesList />
-            <TreasuryDonutChart />
-            <ContractorList data={contractors} />
-            <AgreementExplorer data={agreements} />
-            <TimelineChart data={timelines} />
+          <section className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-6 rounded-lg shadow">
+            <div className="bg-white rounded-lg shadow p-4"><UserStoriesList /></div>
+            <div className="bg-white rounded-lg shadow p-4"><TreasuryDonutChart /></div>
+            <div className="bg-white rounded-lg shadow p-4"><ContractorList data={contractors} /></div>
+            <div className="bg-white rounded-lg shadow p-4"><AgreementExplorer data={agreements} /></div>
+            <div className="bg-white rounded-lg shadow p-4"><TimelineChart data={timelines} /></div>
           </section>
 
-          <section className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-6 rounded shadow">
-            <Agencies />
-            <Invoices />
+          <section className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-6 rounded-lg shadow">
+            <div className="bg-white rounded-lg shadow p-4"><Agencies /></div>
+            <div className="bg-white rounded-lg shadow p-4"><Invoices /></div>
           </section>
 
-          <Compliance />
+          <div className="bg-white rounded-lg shadow p-6">
+            <Compliance />
+          </div>
         </>
       )}
 
       {activeTab === "ai" && (
-        <section className="bg-white p-6 rounded shadow">
+        <section className="bg-white p-6 rounded-lg shadow">
           <SectionHeading title="AI Insights & Predictive Risk" />
-          <FilterTabs filters={["All", "Low", "Moderate", "High"]} active={filter} onChange={setFilter} />
+          <FilterTabs
+            filters={["All", "Low", "Moderate", "High"]}
+            active={filter}
+            onChange={setFilter}
+          />
           <AIDashboard riskLevel={filter} />
         </section>
       )}
 
       {activeTab === "financials" && (
-        <section className="bg-white p-6 rounded shadow">
+        <section className="bg-white p-6 rounded-lg shadow">
           <SectionHeading title="Financial Analysis & Metrics" />
           <FinancialInsights />
         </section>
       )}
 
       {activeTab === "ontology" && (
-        <section className="bg-white p-6 rounded shadow">
+        <section className="bg-white p-6 rounded-lg shadow">
           <SectionHeading title="Data Dictionary & Metadata Ontology" />
           <OntologyExplorer />
         </section>
       )}
 
       {activeTab === "integration" && (
-        <section className="bg-white p-6 rounded shadow">
+        <section className="bg-white p-6 rounded-lg shadow">
           <SectionHeading title="API Integrations & Treasury Syncs" />
           <IntegrationStatus />
         </section>
       )}
 
       {role === "admin" && activeTab === "tools" && (
-        <section className="bg-white p-6 rounded shadow">
+        <section className="bg-white p-6 rounded-lg shadow">
           <SectionHeading title="Developer Tools & Utilities" />
           <ToolsDiagnostics />
         </section>
       )}
 
-      {role === "admin" && activeTab === "system-config" && <SystemConfigCenter />}
+      {role === "admin" && activeTab === "system-config" && (
+        <SystemConfigCenter />
+      )}
       {role === "admin" && activeTab === "devops" && <DevOpsPanel />}
-      {role === "admin" && activeTab === "workflow-studio" && <WorkflowStudio />}
+      {role === "admin" && activeTab === "workflow-studio" && (
+        <WorkflowStudio />
+      )}
     </div>
   );
 }

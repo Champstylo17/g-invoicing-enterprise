@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import LoadingSpinner from "@/components/LoadingSpinner";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/cards";
 
 export default function Agreements() {
   const [agreements, setAgreements] = useState(null);
