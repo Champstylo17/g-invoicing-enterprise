@@ -9,6 +9,8 @@ const Orders = () => {
       .then(data => setOrders(data));
   }, []);
 
+  if (!orders) return <LoadingSpinner />;
+
   return (
     <div>
       <h1>Orders</h1>

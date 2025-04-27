@@ -9,6 +9,8 @@ const Performances = () => {
       .then(data => setPerformances(data));
   }, []);
 
+  if (!performances) return <LoadingSpinner />;
+
   return (
     <div>
       <h1>Performances</h1>
