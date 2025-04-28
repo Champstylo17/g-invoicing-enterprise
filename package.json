@@ -15,7 +15,7 @@
   "devDependencies": {
     "husky": "^8.0.0",
     "lint-staged": "^13.0.0",
-    "prettier": "^2.8.0",
+    "prettier": "^3.5.3",
     "tailwindcss": "^4.1.4",
     "turbo": "^1.10.12"
   },
