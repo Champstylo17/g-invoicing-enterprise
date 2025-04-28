@@ -1,0 +1,1 @@
+export default function Tools() { return <div>Dev Tools Page</div>; }

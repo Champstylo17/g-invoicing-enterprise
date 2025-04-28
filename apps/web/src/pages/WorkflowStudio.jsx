@@ -1,0 +1,1 @@
+export default function WorkflowStudio() { return <div>Workflow Studio Page</div>; }

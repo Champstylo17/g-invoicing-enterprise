@@ -48,10 +48,12 @@ export default function AppRoutes() {
           <Route path="/audit" element={<Audit />} />
           <Route path="/permissions" element={<Permissions />} />
           <Route path="/dictionary" element={<Dictionary />} />
+          <Route path="/compliance" element={<Compliance />} />
 
           {/* interagency data */}
           <Route path="/agreements" element={<Agreements />} />
           <Route path="/orders" element={<Orders />} />
+          <Route path="/agencies" element={<Agencies />} />
           <Route path="/performances" element={<Performances />} />
           <Route path="/invoices" element={<Invoices />} />
           <Route path="/payments" element={<Payments />} />
